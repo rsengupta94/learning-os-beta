@@ -1,0 +1,24 @@
+# macOS cruft (Finder metadata)
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows cruft (folder thumbnails)
+Thumbs.db
+desktop.ini
+
+# Editor swap/backup files
+*.swp
+*.swo
+*~
+\#*\#
+.\#*
+
+# Secrets — just in case you ever add an .env file
+.env
+.env.local
+.env.*
+!.env.example
+
+# Logs (none currently, but safety)
+*.log
