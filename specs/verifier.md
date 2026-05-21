@@ -1,7 +1,5 @@
 # Verifier — Pass 2 Specification
 
-**Owner:** Rajarshi Sengupta
-**Status:** Pass 2 design (locked).
 **Relates to:** §5 of `product_spec.md` (which carries the high-level summary; this file carries the operational detail).
 
 ---

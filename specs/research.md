@@ -1,7 +1,5 @@
 # research — Pass 2 Specification
 
-**Owner:** Rajarshi Sengupta
-**Status:** Pass 2 design (locked).
 **Relates to:** §6 of `product_spec.md` (high-level summary); this file carries operational detail.
 
 ---

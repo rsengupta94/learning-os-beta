@@ -1,7 +1,5 @@
 # /synth — Pass 2 Specification
 
-**Owner:** Rajarshi Sengupta
-**Status:** Pass 2 design (draft).
 **Relates to:** §3.2 of `product_spec.md` (high-level idea); this file carries operational detail.
 
 ---
