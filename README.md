@@ -2,6 +2,8 @@
 
 A personal AI learning system that helps you **deepen understanding of AI developments** and **ship applied AI projects from that understanding**.
 
+**Designed and built by [Rajarshi Sengupta](https://github.com/rsengupta94).**
+
 This file is the operator's manual — what the tool is, what it's made of, and how to use it end-to-end. For the agent-facing system spec see [`CLAUDE.md`](./CLAUDE.md). For full operational detail per command see [`specs/`](./specs/). For design history and rationale see [`product_spec.md`](./product_spec.md).
 
 ---
