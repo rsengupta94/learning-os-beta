@@ -1,7 +1,5 @@
 # Learning OS — V1 Product Specification
 
-**Owner:** Rajarshi Sengupta
-**Status:** Pass 1 (high-level design) — locked. Pass 2 (low-level specs) — drafted. Files: `specs/verifier.md`, `specs/absorb.md`, `specs/research.md`, `specs/synth.md`, `specs/ideate.md`, `specs/apply.md`, `CLAUDE.md` (~145 lines), `.claude/commands/{absorb,synth,ideate,apply}.md` (slash command bodies, ~80 lines total). Pending: `AGENTS.md` (user will write later). V1 build-ready.
 **Role:** This is the source of truth for what we are building.
 
 ---
