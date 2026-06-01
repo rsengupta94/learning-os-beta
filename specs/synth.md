@@ -47,7 +47,7 @@ After reading, two paths:
 
 If no prior session logs and no captured synthesis notes, the agent enters **topic-onboarding**:
 
-1. Identifies the **3–7 critical fundamentals** for the topic (judgment-based count, not fixed). Driven by agent's parametric knowledge of the field + the topic goal in `_topic.md` + any absorbed content.
+1. Identifies the **critical fundamentals** for the topic *through the applied-builder lens* (CLAUDE.md §1): what someone **directing coding agents to build, evaluate, and ship** on this topic needs to understand — not the field's full academic or engineering decomposition. Driven by agent's parametric knowledge of the field + the topic goal in `_topic.md` + any absorbed content. **Each candidate foundation must earn its place by that lens** — collapse or drop field-structure sub-parts that don't independently matter for designing, directing, or deciding. Typically 3–7 (judgment-based, not fixed); a list that runs longer is a signal the lens isn't being applied.
 2. Surfaces them for user calibration:
 
    > *"For [topic], the foundations I'd typically teach with are:*
@@ -55,7 +55,7 @@ If no prior session logs and no captured synthesis notes, the agent enters **top
    > ***B. [foundation]** — [one-line description].*
    > ***C. [foundation]** — [one-line description].*
    > ***D. [foundation]** — [one-line description].*
-   > *Where are you on each — comfortable, shaky, or new? You can also tell me about adjacent things you know that I haven't listed. (Comfort here means applied-builder level — able to use the concept in building, debugging, explaining; not researcher mastery.)"*
+   > *Where are you on each — comfortable, shaky, or new? You can also tell me about adjacent things you know that I haven't listed. (Comfort here means applied-builder level — able to direct, evaluate, and verify build work involving the concept, per CLAUDE.md §1; not researcher mastery.)"*
 
 3. User declares comfort levels + any adjacent context.
 4. Agent **writes calibration to `_topic.md`** (express input, recorded permanently for the topic).
@@ -78,14 +78,14 @@ If the session log has captures pending (things discussed but not committed), ag
 
 ### 4.1 Depth target — applied builder competence
 
-`/synth` teaches to **applied-builder depth**, not researcher or exam-ready depth. The intent is solid grasp for someone building applied AI products — enough to:
+`/synth` teaches to **applied-builder depth** — the canonical definition in CLAUDE.md §1 (the user *builds by directing coding agents*; depth to design, direct, evaluate, and verify — not to hand-implement). Not researcher or exam-ready depth. Concretely, enough to:
 
-1. **Build with the concept** — recognize it in code, system diagrams, library docs.
-2. **Debug with the concept** — reason about why it might misbehave; identify likely causes; know which knobs matter.
+1. **Direct the build** — spec and direct a coding agent to implement the concept; recognize it in code, diagrams, and docs well enough to **review and verify** the agent's work — not to hand-author it.
+2. **Direct a fix** — reason about why it misbehaves well enough to **direct and verify** a correction; not to hand-trace internals or memorize tuning knobs.
 3. **Explain the concept** — to another applied builder, peer-level.
-4. **Choose with the concept** — know when to use it vs. alternatives; understand tradeoffs.
+4. **Choose with the concept** — when to use it vs. alternatives, the tradeoffs, and the product/design implications.
 
-If all four are met, depth is sufficient. **Going further is out of scope unless user asks.**
+If all four are met, depth is sufficient. **Going deeper is out of scope unless the user asks** — and when wire-level protocol, exact data shapes, SDK boilerplate, or syntax start to surface, they're below the §1 line unless load-bearing for a design or direction decision.
 
 The line in concrete terms (using attention as example):
 
@@ -397,7 +397,7 @@ User says *"verify that"* / *"check what you just said"* / *"is that right?"* �
 Voice: **senior practitioner explaining to a learner**, calibrated to comfort level.
 
 - **No padding.** Don't pre-amble. Surface the teaching.
-- **Applied-builder by default.** Default depth is build / debug / explain / choose competence. Adjust on user verbal feedback in either direction (§4.6) — session-scoped, not topic-scoped.
+- **Applied-builder by default.** Default depth is direct / review / explain / choose competence (per §4.1 and CLAUDE.md §1) — depth to direct and verify, not hand-implement. Adjust on user verbal feedback in either direction (§4.6) — session-scoped, not topic-scoped.
 - **Calibrated within depth.** Beginner-at-applied = analogies, basic framings, *"the intuition is..."*. Expert-at-applied = precision, edge cases, peer-to-peer.
 - **Reasoning visible.** Each claim has its provenance tag, so user knows where the knowledge came from.
 - **Pacing-check, not Socratic.** *"Does that land?"* is a flow marker, not a "you guess" prompt.

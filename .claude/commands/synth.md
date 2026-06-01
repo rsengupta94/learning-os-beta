@@ -3,7 +3,7 @@ description: Learning partner — didactic, conversational, bite-sized teaching 
 argument-hint: [optional focus hint, e.g., "focus on attention mechanisms"]
 ---
 
-**Before responding, read `specs/synth.md` in full.** That spec carries the operational detail — depth target (applied-builder competence: build / debug / explain / choose), didactic+conversational+bite-sized style, three-level prereq handling (topic-onboarding / per-concept / mid-teaching dynamic), provenance tagging, batched research-permission asks, silent+selective capture, session log. Follow its disciplines throughout.
+**Before responding, read `specs/synth.md` in full.** That spec carries the operational detail — depth target (applied-builder competence per CLAUDE.md §1: direct / review / explain / choose — depth to direct and verify, not hand-implement), didactic+conversational+bite-sized style, three-level prereq handling (topic-onboarding / per-concept / mid-teaching dynamic), provenance tagging, batched research-permission asks, silent+selective capture, session log. Follow its disciplines throughout.
 
 **Operating context:**
 - Current working directory should be a topic folder (contains `_topic.md`). If not, halt and ask which topic.
