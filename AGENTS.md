@@ -1,6 +1,6 @@
-# Learning OS — CLAUDE.md
+# Learning OS — AGENTS.md
 
-> System spec for Claude Code working on the Learning OS. Read this file entirely at session start. For per-command operational detail, read the relevant `specs/[command].md` when the user invokes that command.
+> System spec for coding agents working on the Learning OS (Codex, Cursor, Gemini CLI, GitHub Copilot, and any agent that reads `AGENTS.md`). Claude Code reads `CLAUDE.md`, which carries the same content with Claude Code platform notes. Read this file entirely at session start. For per-command operational detail, read the relevant `specs/[command].md` when the user invokes that command.
 
 ---
 
@@ -20,7 +20,7 @@ When making a judgment call mid-session, ask: *does this help deepen understandi
 
 1. **Read this file entirely.** Every discipline below applies across all sessions.
 2. **Orient to topic state.** If `cwd` is inside `topics/[name]/` and a `_topic.md` exists, read `_topic.md` + the most recent 1–2 files in `_sessions/` to pick up context. If `cwd` is repo root or a domain folder, wait for the user's command — `/absorb` from outside a topic enters **bootstrap mode** to help start a new topic from the content the user shares.
-3. **On slash command invocation**, read the corresponding `specs/[command].md` before responding. That spec carries the full operational detail. Do not operate from this file alone for command-specific behavior.
+3. **On command invocation**, read the corresponding `specs/[command].md` before responding. That spec carries the full operational detail. Do not operate from this file alone for command-specific behavior.
 4. **Mid-session uncertainty** — if a discipline isn't clear, re-read this file or the relevant spec rather than guessing.
 
 ---
@@ -29,8 +29,8 @@ When making a judgment call mid-session, ask: *does this help deepen understandi
 
 ```
 learning-os/                          # repo root
-├── CLAUDE.md                         # this file (system spec for Claude Code)
-├── AGENTS.md                         # system spec for other coding agents (Codex, Cursor, Gemini CLI, Copilot)
+├── CLAUDE.md                         # system spec for Claude Code
+├── AGENTS.md                         # this file (system spec for other coding agents)
 ├── .agents/skills/                   # canonical command bodies — Agent Skills format (SKILL.md per command)
 │   ├── absorb/SKILL.md
 │   ├── synth/SKILL.md
@@ -119,9 +119,9 @@ When external research is gathering content, prefer higher tiers:
 
 ---
 
-## 8. Four slash commands
+## 8. Four commands
 
-Each command's full behavior lives in its spec. Read the spec before responding to the user's command.
+Each command's full behavior lives in its spec. Read the spec before responding to the user's command. Commands are Agent Skills in `.agents/skills/[command]/SKILL.md`; invoke them however your agent surfaces skills (e.g. `/absorb`, or by name).
 
 - **`/absorb`** — Three modes dispatched by `cwd` + content: **bootstrap** (repo root + content → creates topic + extracts), **extraction** (in a topic + content → writes `absorbed/[slug]/summary.md` + preserves `original.{ext}`; two input patterns — chat-drop or `_inbox/`-drop), **advisor** (in a topic, no content → analyzes corpus, surfaces gaps). Type-aware extraction (URL / PDF / image / text / video transcript / unknown fallback). Voice in advisor mode: senior research advisor. Full spec: `specs/absorb.md`.
 - **`/synth`** — The learning partner. Didactic, conversational, bite-sized dialogue at **applied-builder depth** (per §1 — direct / review / explain / choose, not hand-implement; not researcher). Three-level prereq handling (topic-onboarding / per-concept / mid-teaching dynamic). Capture-on-command (silent + selective). Research-permission asks batched per `[MODEL-UNCERTAIN]` claim. Full spec: `specs/synth.md`.
@@ -147,13 +147,13 @@ Each command's full behavior lives in its spec. Read the spec before responding 
 
 ---
 
-## 10. Claude Code platform notes
+## 10. Platform notes (non-Claude Code agents)
 
-- **Sub-agent invocation:** Gate 2 verifier runs via the `Agent` tool (separate sub-agent with adversarial system prompt). See `specs/verifier.md` for the protocol.
-- **External research:** use `WebSearch` and `WebFetch` for the research capability. Findings synthesized inline in chat with `[RESEARCH]` provenance tags. See `specs/research.md`.
-- **Slash command bodies** are canonical in `.agents/skills/[command]/SKILL.md` (Agent Skills format). `.claude/commands/*.md` are thin stubs auto-loaded by Claude Code on invocation; each stub points at its SKILL.md, which in turn instructs the agent to read the relevant `specs/[command].md` first. Edit the SKILL.md, not the stub.
+- **Sub-agent invocation:** If your agent can spawn a separate sub-agent, run the Gate 2 verifier there with the adversarial system prompt in `specs/verifier.md`. If it cannot, fall back per `specs/verifier.md` §10: run a second-pass self-check using the verifier's adversarial prompt within the same context. This is weaker (shared context = higher shared-bias risk) but preserves the discipline structure.
+- **External research:** use whatever web search / fetch tooling your agent provides. Findings synthesized inline in chat with `[RESEARCH]` provenance tags. If no web tooling is available, fall back per `specs/research.md` §10: cite-and-quote from parametric knowledge with explicit `[MODEL-UNCERTAIN]` tagging, or prompt the user to perform the external check and paste findings.
+- **Command bodies** are Agent Skills in `.agents/skills/[command]/SKILL.md`. Each SKILL.md instructs the agent to read the relevant `specs/[command].md` first. Argument placeholders (`$ARGUMENTS`) follow Claude Code convention; if your agent does not substitute them, treat the user's text after the command name as the argument.
 - **Multi-topic sessions** — multiple topics run in parallel, each in its own session, each `cd`'d into its own topic folder.
 
 ---
 
-**End of CLAUDE.md.**
+**End of AGENTS.md.**

@@ -11,7 +11,7 @@ This file is the operator's manual — what the tool is, what it's made of, and 
 ## 1. What this is (and isn't)
 
 **Is:**
-- A single-user, CLI-only tool that runs inside an AI coding agent (Claude Code; Codex works once you write `AGENTS.md`).
+- A single-user, CLI-only tool that runs inside an AI coding agent. Commands are [Agent Skills](https://agentskills.io) in `.agents/skills/`; Claude Code reads `CLAUDE.md`, other agents (Codex, Cursor, Gemini CLI, Copilot) read `AGENTS.md`.
 - A markdown-file-based knowledge system organized around **topics** — focused study areas you work for weeks or months.
 - Designed for an **applied-AI builder** — depth is *"build / debug / explain / choose"* competence, not researcher-level mastery.
 
@@ -106,7 +106,7 @@ Four learning-flow commands plus one utility:
 | `/apply` | Convert a chosen candidate into a buildable spec |
 | `/done` | Utility — signals session close, writes the session log |
 
-Each command's full operational detail lives in `specs/[command].md`. Each command body in `.claude/commands/[command].md` instructs the agent to read the spec before responding.
+Each command's full operational detail lives in `specs/[command].md`. Each command body is an Agent Skill in `.agents/skills/[command]/SKILL.md` that instructs the agent to read the spec before responding. `.claude/commands/[command].md` are thin stubs that point Claude Code at the SKILL.md.
 
 ### 4.3 Cross-cutting capabilities
 
@@ -141,7 +141,7 @@ Model knowledge is a **primary teaching source**, not a fallback. The system's j
 
 ### 5.1 Requirements
 
-- **A CLI coding agent.** Claude Code is the primary supported environment. Codex works once you write `AGENTS.md` (analog of `CLAUDE.md`).
+- **A CLI coding agent.** Claude Code is the primary supported environment (reads `CLAUDE.md` + `.claude/commands/`). Agents that read `AGENTS.md` and scan `.agents/skills/` (Codex, Cursor, Gemini CLI, GitHub Copilot) work without further setup; only Claude Code has been exercised end-to-end.
 - **Git.** For cross-machine sync via a private remote.
 - **No other dependencies.** No Python, no Node, no databases — just markdown files.
 
@@ -654,7 +654,7 @@ No sync script. No submodules. One repo, one private remote.
 
 **Agent doesn't seem to know the system.** Open Claude Code from the **repo root** (so `CLAUDE.md` is in `cwd`). The agent reads `CLAUDE.md` at session start.
 
-**Slash command isn't recognized.** Make sure `.claude/commands/[command].md` exists. Command name comes from filename.
+**Slash command isn't recognized.** In Claude Code, make sure `.claude/commands/[command].md` exists; command name comes from filename. In other agents, make sure `.agents/skills/[command]/SKILL.md` exists; skill name comes from the folder name.
 
 **Agent ignored a discipline you expected.** Re-read the relevant `specs/[command].md` — the spec is the source of truth. If the discipline isn't there, it doesn't exist in the system yet.
 
@@ -668,7 +668,7 @@ No sync script. No submodules. One repo, one private remote.
 
 **Slash command from outside a topic.** `/synth`, `/ideate`, `/apply` all halt and ask which topic to use. `/absorb` from repo root with content enters bootstrap mode (creates a new topic).
 
-**Confused about tool vs. data files.** **Tool:** `CLAUDE.md`, `AGENTS.md`, `.claude/`, `specs/`, `product_spec.md`, `README.md`. Edit when refining the system. **Data:** everything under `topics/` and `inbox/`. Generated as you use it.
+**Confused about tool vs. data files.** **Tool:** `CLAUDE.md`, `AGENTS.md`, `.agents/`, `.claude/`, `specs/`, `product_spec.md`, `README.md`. Edit when refining the system. **Data:** everything under `topics/` and `inbox/`. Generated as you use it.
 
 **Updating a spec mid-topic.** Edit `specs/[command].md`. Commit + push. Next session in that command uses the updated spec.
 
